@@ -31,9 +31,9 @@ plt.show()
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
-
-
-
+from sklearn import svm
+clf = svm.SVC(kernel = "linear", C=1.0)
+clf.fit(features_train, labels_train)
 
 
 

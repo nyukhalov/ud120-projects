@@ -27,4 +27,25 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 
+from sklearn import svm
+clf = svm.SVC(kernel = "rbf", C=10000.0)
 
+#features_train = features_train[:len(features_train)/100] 
+#labels_train = labels_train[:len(labels_train)/100] 
+
+t0 = time()
+clf.fit(features_train, labels_train)
+print "training time:", round(time()-t0, 3), "s"
+
+t1 = time()
+pred = clf.predict(features_test)
+print "prediction time:", round(time()-t1, 3), "s"
+
+from sklearn.metrics import accuracy_score
+acc = accuracy_score(labels_test, pred)
+print 'Accuracy: %f' % acc
+
+#print clf.predict([features_test[10], features_test[26], features_test[50]])
+
+pred_1 = [pred[i] for i in range (0, len(pred)) if pred[i] == 1]
+print 'Chris emails: ', len(pred_1)
