@@ -24,21 +24,37 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+#plt.show()
 ################################################################################
 
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
 
-from sklearn import svm
-clf = svm.SVC(kernel = "linear", C=1.0)
+from sklearn.neighbors import KNeighborsClassifier
+nn = 1
+
+algo = 'auto'
+#algo = 'ball_tree'
+#algo = 'kd_tree'
+#algo = 'brute'
+
+ls = 100
+
+p = 2
+
+clf = KNeighborsClassifier(n_neighbors=nn, algorithm=algo, leaf_size=ls, p=p)
 clf.fit(features_train, labels_train)
 
+acc = clf.score(features_test, labels_test)
+print 'Accuracy (nn=%d, algo=%s, ls=%d, p=%d): %f' % (nn, algo, ls, p, acc)
 
+#Accuracy (nn=1, algo=auto, ls=30, p=2): 0.940000
 
+def printPicture():
+    try:
+        prettyPicture(clf, features_test, labels_test)
+    except NameError:
+        pass
 
-try:
-    prettyPicture(clf, features_test, labels_test)
-except NameError:
-    pass
+printPicture()
