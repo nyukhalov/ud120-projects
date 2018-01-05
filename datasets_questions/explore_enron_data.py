@@ -19,4 +19,16 @@ import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
+def poi_cnt():
+    cnt = 0
+    for person, features in enron_data.iteritems():
+        if (features["poi"] == 1):
+            cnt += 1
+    return cnt
 
+def james_prentice_stocks():
+    return enron_data["PRENTICE JAMES"]["total_stock_value"]
+
+print poi_cnt()      
+
+print james_prentice_stocks()
