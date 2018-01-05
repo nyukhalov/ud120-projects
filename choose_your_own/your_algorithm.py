@@ -49,7 +49,7 @@ clf.fit(features_train, labels_train)
 acc = clf.score(features_test, labels_test)
 print 'Accuracy (nn=%d, algo=%s, ls=%d, p=%d): %f' % (nn, algo, ls, p, acc)
 
-#Accuracy (nn=1, algo=auto, ls=30, p=2): 0.940000
+#Accuracy (nn=1, algo=auto, leaf_size=30, p=2): 0.940000
 
 def printPicture():
     try:
